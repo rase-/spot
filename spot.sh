@@ -144,9 +144,9 @@ fi
 if [ $colors ]; then
   eval "find "$dir" -type f $exclude -print0" \
     | GREP_COLOR="1;33;40" xargs -0 grep $grepopt -e "`echo $@`" \
-    | sed "s/^\([^:]*:\)\(.*\)/  \\
+    | sed "s/^\([^:]*:\)\(.*\):\(.\{0,255\}\)\(.*\)/  \\
   $cyan\1$reset  \\
-  \2 /"
+  \2: \3/"
 else
   eval "find "$dir" -type f $exclude -print0" \
     | xargs -0 grep $grepopt -e "$@" \
